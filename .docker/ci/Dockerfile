@@ -31,13 +31,12 @@ RUN \
     # Fetch all dependencies from moveit2.repos
     vcs import src < src/moveit2/moveit2.repos && \
     if [ -r src/moveit2/moveit2_${ROS_DISTRO}.repos ] ; then vcs import src < src/moveit2/moveit2_${ROS_DISTRO}.repos ; fi && \
+    git clone https://github.com/ros-planning/srdfdom src/srdfdom -b ros2 && \
     #
     # Download all dependencies of MoveIt
     rosdep update && \
     DEBIAN_FRONTEND=noninteractive \
     rosdep install -y --from-paths src --ignore-src --rosdistro ${ROS_DISTRO} --as-root=apt:false && \
-    # Remove srdfdom binaries
-    apt-get -y remove ros-rolling-srdfdom && \
     # Remove the source code from this container
     rm -rf src && \
     #
