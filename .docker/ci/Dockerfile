@@ -31,7 +31,7 @@ RUN \
     # Fetch all dependencies from moveit2.repos
     vcs import src < src/moveit2/moveit2.repos && \
     if [ -r src/moveit2/moveit2_${ROS_DISTRO}.repos ] ; then vcs import src < src/moveit2/moveit2_${ROS_DISTRO}.repos ; fi && \
-    git clone https://github.com/ros-planning/srdfdom src/srdfdom -b ros2 && \
+    # git clone https://github.com/ros-planning/srdfdom src/srdfdom -b ros2 && \
     #
     # Download all dependencies of MoveIt
     rosdep update && \
